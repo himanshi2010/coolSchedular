@@ -25,6 +25,7 @@ function Login(props) {
   }
 
   return (
+    <div>
     <div className="main">
       <div className="sign">Login</div><br /><br />
       <div >
@@ -37,6 +38,8 @@ function Login(props) {
       </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input className="submit" type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+    </div>
+      For testing purposes, you can use 'name@sample.com' and 'password123' as email-id and password resp.
     </div>
   );
 }
