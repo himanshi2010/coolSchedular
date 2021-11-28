@@ -17,11 +17,18 @@ const schema = new mongoose.Schema(
       required: true,
     },
     coursesTaken: [
-        {
-            courseCode: {
-                type: String,
-            }
+      {
+        courseName: {
+          type: String
+        },
+        courseCode: {
+          type: String
+        },
+        teacherTeaching: {
+          type: String,
+          default: "not_assigned"
         }
+      }
     ]
   },
   { timestamps: true }

@@ -5,30 +5,26 @@ const schema = new mongoose.Schema(
     courseCode: {
         type: String, 
         requied: true,
+        index: true
+    },
+    courseName: {
+        type: String,
+        required: true
     },
     dept: {
       type: String,
       required: true,
     },
-    teacherID: {
+    teacherId: {
         type: String,
-        required: true,
+        default: "not_assigned"
     },
     studentsEnrolled: [
         {
             studentId: {
                 type: String
-            }
-        }
-    ],
-    slots: [
-        {
-            startTime: {
-                type: Date
             },
-            endTime: {
-                type: Date
-            }
+            default: []
         }
     ]
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { setUserSession, getUser} from '../Utils/Common';
+import { setUserSession } from '../Utils/Common';
 import history from '../Utils/History';
 import "./Login.css"
 

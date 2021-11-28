@@ -1,5 +1,9 @@
 const userModel = require("../models/User")
 
+exports.findUserById = async (_id) => {
+    return await userModel.findOne({_id});
+}
+
 exports.findUserByEmail = async (email) => {
     return await userModel.findOne({email});
 }

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter , Route, NavLink } from 'react-router-dom';
 import { Routes } from 'react-router';
-import axios from 'axios';
 import history from './Utils/History';
 
 import Login from './containers/Login';
@@ -9,7 +8,8 @@ import Home from './containers/Home';
 import './App.css'
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicRoute from './Utils/PublicRoute';
-import { getToken, removeUserSession, setUserSession } from './Utils/Common';
+import { getToken } from './Utils/Common';
+import Schedule from './Schedule';
 import PageNotFound from './containers/PageNotFound';
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<PublicRoute component = {Login}/>} />
               <Route path="/home" element={<PrivateRoute component = {Home}/>} />
+              <Route path="/schedule" element={<PrivateRoute component = {Schedule}/>} />
               <Route path="*" element={<PageNotFound/>} />
             </Routes>
           </div>

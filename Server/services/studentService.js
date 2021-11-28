@@ -1,6 +1,7 @@
 const studentModel = require("../models/Student");
 
 const userService = require("./userService");
+const courseService = require("./courseService");
 
 exports.addStudent = async (data) => {
 
@@ -17,8 +18,21 @@ exports.addStudent = async (data) => {
     const newStudent = new studentModel({
         userId: newUser._id,
         rollno: data.rollno,
-        dept: data.dept
+        dept: data.dept,
+        coursesTaken: data.coursesTaken
     });
 
     return await newStudent.save();
 };
+
+exports.getCoursesForStudent = async (userId) => {
+    const student = await studentModel.findOne({userId});
+    var coursesTaken = [];
+    if(student.coursesTaken)
+        coursesTaken = student.coursesTaken;
+    for(var i = 0; i < coursesTaken.length; ++i) {
+        var course = await courseService.getCourseById(coursesTaken[i].courseCode);
+        coursesTaken[i].teacherTeaching = course.teacherId;
+    }
+    return coursesTaken;
+}

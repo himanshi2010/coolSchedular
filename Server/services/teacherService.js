@@ -1,6 +1,7 @@
 const teacherModel = require("../models/Teacher");
 
 const userService = require("./userService");
+const courseService = require("./courseService");
 
 exports.addTeacher = async (data) => {
 
@@ -17,8 +18,20 @@ exports.addTeacher = async (data) => {
     const newTeacher = new teacherModel({
         userId: newUser._id,
         dept: data.dept,
-        coursesTeaching: []
+        coursesTeaching: data.coursesTeaching
     });
 
     return await newTeacher.save();
 };
+
+exports.getCoursesToTeach = async (userId) => {
+    return await courseService.getCourses(userId);
+};
+
+exports.getTeacherByEmail = async (email) => {
+    const user = await userService.findUserByEmail(email);
+    if(!user)
+        return null;
+    const teacher = await teacherModel.findOne({userId: user_id});
+    return teacher;
+}
