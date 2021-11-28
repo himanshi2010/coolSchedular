@@ -40,6 +40,14 @@ app.use((req, res, next) => {
   return NotFound(res);
 });
 
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static("react-app/build"));
+  const path = require("path");
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'react-app','build','index.html'));
+  })
+}
+
 mongoose
   .connect(process.env.URI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then((res) => {
