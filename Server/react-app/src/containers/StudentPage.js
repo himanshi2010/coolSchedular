@@ -11,10 +11,10 @@ function Schedule (props) {
     const [reqStatus, setReqStatus] = useState("notrequested");
     var today = new Date(); // get current date
     var first = today.getDate() - today.getDay() + 1 + 7; 
-    var last = first + 6; 
+    var last = first + 5; 
 
-    var firstday = new Date(today.setDate(first)).toDateString();
-    var lastday = new Date(today.setDate(last)).toDateString();
+    const firstday = new Date(today.setDate(first)).toDateString();
+    const lastday = new Date(today.setDate(last)).toDateString();
     const data = JSON.stringify({data:{ courseCode: props.course }})
     useEffect(() => {
     axios({
@@ -107,7 +107,7 @@ function Schedule (props) {
 
     return(
         <div>
-            <h4>Schedule for Upcoming Week - {firstday} to {lastday}</h4>
+            <h4>Schedule for Upcoming Week - Week of {firstday}  </h4>
             <h5>Please enter your priorities for the given slots and we'll get back to you after allotment of slots.</h5>
             <p>{reqStatus}!</p>
             <SlotList/>
@@ -152,6 +152,7 @@ function StudentPage(props){
             <div>
                Welcome {user} !<br /><br />
                <input type="button" onClick={handleLogout} value="Logout" /> 
+              <p> Deadline for Submission of preferences is Saturday midnight.</p>
                <SubjectList />
 
             </div>
